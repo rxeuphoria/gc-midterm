@@ -26,14 +26,15 @@ public class LibraryTerminalApp {
 	// after a book is checked out successfully, present updated list with updated
 	// checkout status
 	// sysout "here's your book, it's due back XX/XX/XXXX"
+	static Scanner input = new Scanner(System.in);
+
 	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
 
 		int choice = 0;
 		System.out.println("********************Welcome to the Public Library!********************");
 		System.out.println("              Please Select From The Following Options:               ");
 		System.out.println("**********************************************************************");
-		while (choice != 5) {
+		while (!(choice == 5)) {
 			System.out.println("1: Display all books");
 			System.out.println("2: Check out book");
 			System.out.println("3: Check in book");
@@ -41,25 +42,23 @@ public class LibraryTerminalApp {
 			System.out.println("5: Exit");
 			choice = input.nextInt();
 
-			System.out.println(readFile());
+			if (choice == 1) {
+				System.out.println(readFile());
+			} else if (choice == 2) { // ask what book they want, remove from availible list(temp),apply duedate
+
+				System.out.println("checked out");
+			} else if (choice == 3) {
+				System.out.println("Check"); // ask what book they're checking in, check if its out,check duedate for
+												// late fees,add back to avabile list
+
+			} else if (choice == 4) {
+				System.out.println("words"); // ask user to choose if the want to search by author or keyword,search
+			} else if (choice == 5) {
+				System.out.println("Goodbye!");
+			} else {
+				System.out.println("Please enter valid selection.");
+			}
 		}
-
-		if (choice == 1) {
-			System.out.println(readFile());
-		} else if (choice == 2) {
-
-			System.out.println("BookList");// Check out book
-		} else if (choice == 3) {
-			System.out.println("Check");
-
-		} else if (choice == 4) {
-			System.out.println("words");
-		} else if (choice == 5) {
-			System.out.println("Goodbye!");
-		} else {
-			System.out.println("Please enter valid selection.");
-		}
-
 	}
 
 	// Read all the objects from a file and store them in a List.

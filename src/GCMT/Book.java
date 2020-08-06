@@ -7,13 +7,13 @@ public class Book {
 	private static String title;
 	private static String author;
 	private static Boolean checkedOut;
-	private static Calendar dueDate;
+	private static int dueDate;
 	
 	public Book() {
 		
 	}
 	
-	public Book(String title, String author, Boolean checkedOut, Calendar dueDate) {
+	public Book(String title, String author, Boolean checkedOut, int dueDate) {
 		this.title = title;
 		this.author = author;
 		this.checkedOut = checkedOut;
@@ -44,11 +44,11 @@ public class Book {
 		Book.checkedOut = checkedOut;
 	}
 
-	public static Calendar getDueDate() {
+	public static int getDueDate() {
 		return dueDate;
 	}
 
-	public static void setDueDate(Calendar dueDate) {
+	public static void setDueDate(int dueDate) {
 		Book.dueDate = dueDate;
 	}
 

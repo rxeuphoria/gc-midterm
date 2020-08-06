@@ -45,8 +45,9 @@ public class LibraryTerminalApp {
 		case 1: // Display all books;
 			readFile();// bookshelf list
 			break;
-		case 2: // Check out book
-			System.out.println("check");
+		case 2:
+			System.out.println(BookList);// Check out book
+		
 			break;
 		case 3: // check in;
 			System.out.println("Check");
@@ -92,5 +93,13 @@ public class LibraryTerminalApp {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	public void showAllBooks() {
+		
+		System.out.println("Heres what we have in stock");//use tabs to format later
+		System.out.println("Title\t\tAuthor");
+		for(int i=0;i<count;i++) {
+		System.out.println(Book[i].name + Book[i].author);
+		}	
+	}
+	
 }

@@ -40,25 +40,26 @@ public class LibraryTerminalApp {
 			System.out.println("4: Search book");
 			System.out.println("5: Exit");
 			choice = input.nextInt();
+
+			System.out.println(readFile());
 		}
-		switch (choice) {
-		case 1: // Display all books;
-			readFile();// bookshelf list
-			break;
-		case 2:
-			System.out.println(BookList);// Check out book
-		
-			break;
-		case 3: // check in;
+
+		if (choice == 1) {
+			System.out.println(readFile());
+		} else if (choice == 2) {
+
+			System.out.println("BookList");// Check out book
+		} else if (choice == 3) {
 			System.out.println("Check");
-			break;
-		case 4: // search book
+
+		} else if (choice == 4) {
 			System.out.println("words");
-			break;
-		case 5: // exit
-			System.out.println("there");
-			break;
+		} else if (choice == 5) {
+			System.out.println("Goodbye!");
+		} else {
+			System.out.println("Please enter valid selection.");
 		}
+
 	}
 
 	// Read all the objects from a file and store them in a List.
@@ -78,7 +79,8 @@ public class LibraryTerminalApp {
 				boolean checkedOut = parts[2] != null;
 				int dueDate = Integer.parseInt(parts[3]);
 
-				bookShelf.add(Book(title, author, checkedOut, dueDate));// add to list new list
+				// bookShelf.add(Book(title, author, checkedOut, dueDate));// add to list new
+				// list
 			}
 			return bookShelf;
 
@@ -89,17 +91,11 @@ public class LibraryTerminalApp {
 		}
 	}
 
-	private static Book Book(String title, String author, boolean checkedOut, int dueDate) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public void showAllBooks() {
-		
-		System.out.println("Heres what we have in stock");//use tabs to format later
-		System.out.println("Title\t\tAuthor");
-		for(int i=0;i<count;i++) {
-		System.out.println(Book[i].name + Book[i].author);
-		}	
-	}
-	
+	/*
+	 * public void showAllBooks() { int count;
+	 * System.out.println("Heres what we have in stock");//use tabs to format later
+	 * System.out.println("Title\t\tAuthor"); for(int i=0;i<count;i++) {
+	 * System.out.println(Book[i].name + Book[i].author);
+	 */
+
 }

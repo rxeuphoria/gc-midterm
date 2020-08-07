@@ -28,15 +28,16 @@ public class LibraryTerminalApp {
 	// checkout status
 	// sysout "here's your book, it's due back XX/XX/XXXX"
 	public static Scanner input = new Scanner(System.in);
+	private static int cart = 0;
 
 	public static void main(String[] args) {
-		
+
 		Calendar calendar = Calendar.getInstance();
 		int choice = 0;
 		System.out.println("******************* Welcome to the Public Library! *******************");
 		System.out.println("              Please Select From The Following Options:               ");
-		System.out.println("******************** "+ calendar.getTime() +  " ********************");
-		while (!(choice == 5)) {
+		System.out.println("******************** " + calendar.getTime() + " ********************");
+		while (!(choice == 5) && (cart <= 3)) {
 			System.out.println("1: Display all books");
 			System.out.println("2: Check out book");
 			System.out.println("3: Check in book");
@@ -49,15 +50,13 @@ public class LibraryTerminalApp {
 
 			} else if (choice == 2) { // ask what book they want, remove from availible list(temp),apply duedate
 
-				        System.out.println(readFile());        
-				        System.out.println(" What book would you like?\n");
-				        boolean checkedIn= rentBook(input.next());
-				        if (checkedIn) {
-				        	System.out.println("It is available for rent.\n");
-				        }
+				System.out.println(readFile());
+				System.out.println(" What book would you like?\n");
+				boolean checkedIn = rentBook(input.next());
+				if (checkedIn) {
+					System.out.println("It is available for rent.\n");
+				}
 
-
-				
 			} else if (choice == 3) {
 				System.out.println("Check"); // ask what book they're checking in, check if its out,check duedate for
 												// late fees,add back to avabile list
@@ -71,47 +70,44 @@ public class LibraryTerminalApp {
 				System.out.println("Please enter valid selection.");
 			}
 		}
+	}
+
+	public static void searchByAuthorName() {
+		List<Book> authorSearch = new ArrayList<>(); // Array that stores 'book' Objects.
+		int count = 0; // Counter for No of book objects Added in Array.
+
+		System.out.println("\t\t\t\tSEARCH BY AUTHOR'S NAME");
+		input.nextLine();
+		System.out.println("Enter Author Name:");
+		String author = input.nextLine();
+		int flag = 0;
+		System.out.println("\t\tName\t\tAuthor");
+		for (int i = 0; i < count; i++) {
+
+			if (author.equalsIgnoreCase(GCMT.Book.author)) {
+
+				System.out.println(GCMT.Book.title + "\t\t" + GCMT.Book.author);
+				flag++;
+				System.out.println(authorSearch);
+			}
+
 		}
-		public static void searchByAuthorName(){
-			  List<Book> authorSearch = new ArrayList<>();   // Array that stores 'book' Objects.
-			int count=0;    // Counter for No of book objects Added in Array.
-			
-			
-		    System.out.println("\t\t\t\tSEARCH BY AUTHOR'S NAME");
-		    input.nextLine();
-		    System.out.println("Enter Author Name:");
-		    String author = input.nextLine();
-		    int flag = 0;
-		    System.out.println("\t\tName\t\tAuthor");
-		    for (int i=0; i<count; i++){
+		if (flag == 0)
+			System.out.println("No Books of " + author + " Found.");
 
-		        if (author.equalsIgnoreCase(GCMT.Book.author)){
-
-		            System.out.println( GCMT.Book.title + "\t\t" + GCMT.Book.author
-		               );
-		            flag++;
-		        System.out.println(authorSearch);
-		        }
-
-		    }
-		    if (flag == 0)
-		        System.out.println("No Books of " + author + " Found.");
-	
 	}
 
-	
-	
-	public static boolean rentBook (String userChoice) {
-		String available= null;
-		for( int i =0; i < readFile().size(); i++) {
-			     
-		   if(userChoice.equals(readFile().get(i).getCheckedOut())== false) {
-			  System.out.println("That book is available for rent.");
-		 }
-       } return true;
+	public static boolean rentBook(String userChoice) {
+		for (int i = 0; i < readFile().size(); i++) {
+
+			if (userChoice.equals(readFile().get(i).getCheckedOut()) == false) {
+				System.out.println("That book is available for rent.");
+				cart++;
+			}
+		}
+		return true;
 	}
-	
-	
+
 	// Read all the objects from a file and store them in a List.
 	public static List<Book> readFile() {
 		try {

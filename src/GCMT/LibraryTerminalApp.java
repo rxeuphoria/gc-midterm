@@ -53,7 +53,11 @@ public class LibraryTerminalApp {
 												// late fees,add back to avabile list
 			} else if (choice == 4) {
 				System.out.println("words"); // ask user to choose if the want to search by author or keyword,search
+<<<<<<< HEAD
 				searchByAuthorName();
+=======
+
+>>>>>>> 1b085c1e63bb73a27b1cd72f8321a279284cc27f
 			} else if (choice == 5) {
 				System.out.println("Goodbye!");
 			} else {

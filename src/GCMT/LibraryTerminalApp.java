@@ -28,15 +28,16 @@ public class LibraryTerminalApp {
 	// checkout status
 	// sysout "here's your book, it's due back XX/XX/XXXX"
 	public static Scanner input = new Scanner(System.in);
+	private static int cart = 0;
 
 	public static void main(String[] args) {
-		
+
 		Calendar calendar = Calendar.getInstance();
 		int choice = 0;
 		System.out.println("******************* Welcome to the Public Library! *******************");
 		System.out.println("              Please Select From The Following Options:               ");
-		System.out.println("******************** "+ calendar.getTime() +  " ********************");
-		while (!(choice == 5)) {
+		System.out.println("******************** " + calendar.getTime() + " ********************");
+		while (!(choice == 5) && (cart <= 3)) {
 			System.out.println("1: Display all books");
 			System.out.println("2: Check out book");
 			System.out.println("3: Check in book");
@@ -49,16 +50,15 @@ public class LibraryTerminalApp {
 
 			} else if (choice == 2) { // ask what book they want, remove from availible list(temp),apply duedate
 
-				        System.out.println(readFile());        
-				        System.out.println(" What book would you like?\n");
-				        boolean checkedIn= rentBook(input.next());
-				        if (checkedIn) {
-				        	System.out.println("It is available for rent.\n");
-				        }
+				System.out.println(readFile());
+				System.out.println(" What book would you like?\n");
+				boolean checkedIn = rentBook(input.next());
+				if (checkedIn) {
+					System.out.println("It is available for rent.\n");
+				}
 
-
-				
 			} else if (choice == 3) {
+<<<<<<< HEAD
 				        System.out.println("What would you like to return?"); // ask what book they're checking in, check if its out,check duedate for
 						boolean bookReturned= returnBook(input.next());	// late fees,add back to avabile list
 						          if(bookReturned) {
@@ -66,6 +66,12 @@ public class LibraryTerminalApp {
 						          }else if(!bookReturned) {
 						        	  System.out.println(" The book is not due back.");
 						          }
+=======
+				System.out.println("What would you like to return?"); // ask what book they're checking in, check if its
+																		// out,check duedate for
+				boolean bookReturned = returnBook(input.next()); // late fees,add back to avabile list
+
+>>>>>>> 2b56e429872f120986dbedad74c08c5c01ce44cb
 			} else if (choice == 4) {
 				System.out.println("words"); // ask user to choose if the want to search by author or keyword,search
 				searchByAuthorName();
@@ -76,34 +82,34 @@ public class LibraryTerminalApp {
 				System.out.println("Please enter valid selection.");
 			}
 		}
-		}
-		public static void searchByAuthorName(){
-			  List<Book> authorSearch = new ArrayList<>();   // Array that stores 'book' Objects.
-			int count=0;    // Counter for No of book objects Added in Array.
-			
-			
-		    System.out.println("\t\t\t\tSEARCH BY AUTHOR'S NAME");
-		    input.nextLine();
-		    System.out.println("Enter Author Name:");
-		    String author = input.nextLine();
-		    int flag = 0;
-		    System.out.println("\t\tName\t\tAuthor");
-		    for (int i=0; i<count; i++){
-
-		        if (author.equalsIgnoreCase(GCMT.Book.author)){
-
-		            System.out.println( GCMT.Book.title + "\t\t" + GCMT.Book.author
-		               );
-		            flag++;
-		        System.out.println(authorSearch);
-		        }
-
-		    }
-		    if (flag == 0)
-		        System.out.println("No Books of " + author + " Found.");
-	
 	}
 
+	public static void searchByAuthorName() {
+		List<Book> authorSearch = new ArrayList<>(); // Array that stores 'book' Objects.
+		int count = 0; // Counter for No of book objects Added in Array.
+
+		System.out.println("\t\t\t\tSEARCH BY AUTHOR'S NAME");
+		input.nextLine();
+		System.out.println("Enter Author Name:");
+		String author = input.nextLine();
+		int flag = 0;
+		System.out.println("\t\tName\t\tAuthor");
+		for (int i = 0; i < count; i++) {
+
+			if (author.equalsIgnoreCase(GCMT.Book.author)) {
+
+				System.out.println(GCMT.Book.title + "\t\t" + GCMT.Book.author);
+				flag++;
+				System.out.println(authorSearch);
+			}
+
+		}
+		if (flag == 0)
+			System.out.println("No Books of " + author + " Found.");
+
+	}
+
+<<<<<<< HEAD
 	
 	
 	public static boolean rentBook (String userChoice) {
@@ -112,15 +118,39 @@ public class LibraryTerminalApp {
 			if(userChoice.equals(readFile().get(i).getCheckedOut())== false);
 			
        } return true;
+=======
+	public static boolean rentBook(String userChoice) {
+
+		for (int i = 0; i < readFile().size(); i++) {
+
+			if (userChoice.equals(readFile().get(i).getCheckedOut()) == false) {
+				System.out.println("That book is available for rent.");
+				cart++;
+			}
+		}
+		return true;
+>>>>>>> 2b56e429872f120986dbedad74c08c5c01ce44cb
 	}
-	
+
 	public static boolean returnBook(String userChoice) {
+<<<<<<< HEAD
 		
 		      for( int i =0; i < readFile().size(); i++) {
 		     if(userChoice.equals(readFile().get(i).getCheckedOut())== false) ;
 		 }return false;
+=======
+
+		for (int i = 0; i < readFile().size(); i++) {
+
+			if (userChoice.equals(readFile().get(i).getCheckedOut()) == true) {
+				System.out.println("Thank you for your return.");
+				cart--;
+			}
+		}
+		return true;
+>>>>>>> 2b56e429872f120986dbedad74c08c5c01ce44cb
 	}
-	
+
 	// Read all the objects from a file and store them in a List.
 	public static List<Book> readFile() {
 		try {

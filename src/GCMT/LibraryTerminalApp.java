@@ -41,25 +41,22 @@ public class LibraryTerminalApp {
 			System.out.println("5: Exit");
 			choice = input.nextInt();
 
-			System.out.println(readFile());
+			if (choice == 1) {
+				System.out.println(readFile());
+			} else if (choice == 2) {
+
+				System.out.println("BookList");// Check out book
+			} else if (choice == 3) {
+				System.out.println("Check");
+
+			} else if (choice == 4) {
+				System.out.println("words");
+			} else if (choice == 5) {
+				System.out.println("Goodbye!");
+			} else {
+				System.out.println("Please enter valid selection.");
+			}
 		}
-
-		if (choice == 1) {
-			System.out.println(readFile());
-		} else if (choice == 2) {
-
-			System.out.println("BookList");// Check out book
-		} else if (choice == 3) {
-			System.out.println("Check");
-
-		} else if (choice == 4) {
-			System.out.println("words");
-		} else if (choice == 5) {
-			System.out.println("Goodbye!");
-		} else {
-			System.out.println("Please enter valid selection.");
-		}
-
 	}
 
 	// Read all the objects from a file and store them in a List.

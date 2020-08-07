@@ -42,6 +42,7 @@ public class LibraryTerminalApp {
 			System.out.println("2: Check out book");
 			System.out.println("3: Check in book");
 			System.out.println("4: Search book");
+
 			System.out.println("5: Exit");
 			choice = input.nextInt();
 
@@ -58,23 +59,31 @@ public class LibraryTerminalApp {
 				}
 
 			} else if (choice == 3) {
-<<<<<<< HEAD
-				        System.out.println("What would you like to return?"); // ask what book they're checking in, check if its out,check duedate for
-						boolean bookReturned= returnBook(input.next());	// late fees,add back to avabile list
-						          if(bookReturned) {
-						        	  System.out.println("Thank you for your return.");
-						          }else if(!bookReturned) {
-						        	  System.out.println(" The book is not due back.");
-						          }
-=======
+
 				System.out.println("What would you like to return?"); // ask what book they're checking in, check if its
 																		// out,check duedate for
 				boolean bookReturned = returnBook(input.next()); // late fees,add back to avabile list
+				if (bookReturned) {
+					System.out.println("Thank you for your return.");
+				} else if (!bookReturned) {
+					System.out.println(" The book is not due back.");
+				}
 
->>>>>>> 2b56e429872f120986dbedad74c08c5c01ce44cb
+				System.out.println("What would you like to return?"); // ask what book they're checking in, check if its
+																		// out,check duedate for
+
 			} else if (choice == 4) {
-				System.out.println("words"); // ask user to choose if the want to search by author or keyword,search
+				
+				System.out.println("welcome to the serch engine would you like to search by keyword or author?");
+				System.out.println("Please select 1 for author or 2 for keyword");
+				choice = input.nextInt();
+				if(choice==1)
 				searchByAuthorName();
+				if (choice==2)
+					searchByKeyWord();
+				else {
+					System.out.println("Please make a valid selection");
+				}	
 
 			} else if (choice == 5) {
 				System.out.println("Goodbye!");
@@ -84,41 +93,70 @@ public class LibraryTerminalApp {
 		}
 	}
 
-	public static void searchByAuthorName() {
-		List<Book> authorSearch = new ArrayList<>(); // Array that stores 'book' Objects.
-		int count = 0; // Counter for No of book objects Added in Array.
+	public static ArrayList<Object> searchByAuthorName() {
+		try {
+			List<String> lines = Files.readAllLines(filePath);
+			System.out.println("\t\t\t\tSEARCH BY AUTHOR'S NAME");
+			input.nextLine();
+			System.out.println("Enter Author Name:");
+			String author = input.nextLine();
+			int flag = 0;
+			System.out.println("\tName\t\t\t\tAuthor");
+			System.out.println("**********************************************************************");
+			for (String word : lines) {
+				String[] parts = word.split("~~~");
+				String author1 = parts[1];
+				String title = parts[0];
+				if (author.equalsIgnoreCase(author1)) {
 
-		System.out.println("\t\t\t\tSEARCH BY AUTHOR'S NAME");
-		input.nextLine();
-		System.out.println("Enter Author Name:");
-		String author = input.nextLine();
-		int flag = 0;
-		System.out.println("\t\tName\t\tAuthor");
-		for (int i = 0; i < count; i++) {
+					System.out.println("\s" + parts[0] + "\t\t" + parts[1]);
+					flag++;
 
-			if (author.equalsIgnoreCase(GCMT.Book.author)) {
+				}
 
-				System.out.println(GCMT.Book.title + "\t\t" + GCMT.Book.author);
-				flag++;
-				System.out.println(authorSearch);
 			}
+			if (flag == 0)
+				System.out.println("No Books of " + author + " Found.");
 
+		} catch (IOException e) {
+			System.out.println("Unable to read file.");
 		}
-		if (flag == 0)
-			System.out.println("No Books of " + author + " Found.");
+		return new ArrayList<>();
 
 	}
 
-<<<<<<< HEAD
-	
-	
-	public static boolean rentBook (String userChoice) {
-		
-		   for( int i =0; i < readFile().size(); i++) {
-			if(userChoice.equals(readFile().get(i).getCheckedOut())== false);
-			
-       } return true;
-=======
+	public static ArrayList<Object> searchByKeyWord() {
+		try {
+			List<String> lines = Files.readAllLines(filePath);
+			System.out.println("\t\t\t\tSEARCH BY KEYWORD");
+			input.nextLine();
+			System.out.println("Enter a keyword:");
+			String keyword = input.nextLine();
+			int flag = 0;
+			System.out.println("\tName\t\t\t\tAuthor");
+			System.out.println("**********************************************************************");
+			for (String word : lines) {
+				String[] parts = word.split("~~~");
+				String author1 = parts[1];
+				String title = parts[0];
+				if (title.equalsIgnoreCase(keyword)) {
+
+					System.out.println("\s" + parts[0] + "\t\t" + parts[1]);
+					flag++;
+
+				}
+
+			}
+			if (flag == 0)
+				System.out.println("No Books of " + keyword + " Found.");
+
+		} catch (IOException e) {
+			System.out.println("Unable to read file.");
+		}
+		return new ArrayList<>();
+
+	}
+
 	public static boolean rentBook(String userChoice) {
 
 		for (int i = 0; i < readFile().size(); i++) {
@@ -129,26 +167,26 @@ public class LibraryTerminalApp {
 			}
 		}
 		return true;
->>>>>>> 2b56e429872f120986dbedad74c08c5c01ce44cb
+
 	}
 
 	public static boolean returnBook(String userChoice) {
-<<<<<<< HEAD
-		
-		      for( int i =0; i < readFile().size(); i++) {
-		     if(userChoice.equals(readFile().get(i).getCheckedOut())== false) ;
-		 }return false;
-=======
 
 		for (int i = 0; i < readFile().size(); i++) {
-
-			if (userChoice.equals(readFile().get(i).getCheckedOut()) == true) {
-				System.out.println("Thank you for your return.");
-				cart--;
-			}
+			if (userChoice.equals(readFile().get(i).getCheckedOut()) == false)
+				;
 		}
-		return true;
->>>>>>> 2b56e429872f120986dbedad74c08c5c01ce44cb
+		return false;
+
+//		for (int i = 0; i < readFile().size(); i++) {
+//
+//			if (userChoice.equals(readFile().get(i).getCheckedOut()) == true) {
+//				System.out.println("Thank you for your return.");
+//				cart--;
+//			}
+//		}
+//		return true;
+
 	}
 
 	// Read all the objects from a file and store them in a List.

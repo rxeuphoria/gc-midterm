@@ -44,32 +44,48 @@ public class LibraryTerminalApp {
 
 			if (choice == 1) {
 				System.out.println(readFile());
-<<<<<<< HEAD
-			} else if (choice == 2) {
 
-				System.out.println("BookList");// Check out book
-			} else if (choice == 3) {
-				System.out.println("Check");
-
-			} else if (choice == 4) {
-				System.out.println("words");
-=======
 			} else if (choice == 2) { // ask what book they want, remove from availible list(temp),apply duedate
-
+				
 				System.out.println("checked out");
 			} else if (choice == 3) {
 				System.out.println("Check"); // ask what book they're checking in, check if its out,check duedate for
 												// late fees,add back to avabile list
-
 			} else if (choice == 4) {
 				System.out.println("words"); // ask user to choose if the want to search by author or keyword,search
->>>>>>> 8e900b23754b27998e7d7a4973435b346d768254
+				searchByAuthorName();
 			} else if (choice == 5) {
 				System.out.println("Goodbye!");
 			} else {
 				System.out.println("Please enter valid selection.");
 			}
 		}
+		}
+		public static void searchByAuthorName(){
+			  List<Book> authorSearch = new ArrayList<>();   // Array that stores 'book' Objects.
+			int count=0;    // Counter for No of book objects Added in Array.
+			
+			
+		    System.out.println("\t\t\t\tSEARCH BY AUTHOR'S NAME");
+		    input.nextLine();
+		    System.out.println("Enter Author Name:");
+		    String author = input.nextLine();
+		    int flag = 0;
+		    System.out.println("\t\tName\t\tAuthor");
+		    for (int i=0; i<count; i++){
+
+		        if (author.equalsIgnoreCase(GCMT.Book.author)){
+
+		            System.out.println( GCMT.Book.title + "\t\t" + GCMT.Book.author
+		               );
+		            flag++;
+		        System.out.println(authorSearch);
+		        }
+
+		    }
+		    if (flag == 0)
+		        System.out.println("No Books of " + author + " Found.");
+	
 	}
 
 	// Read all the objects from a file and store them in a List.

@@ -3,17 +3,16 @@ package GCMT;
 import java.util.Calendar;
 
 public class Book {
-	
-	 static String title;
+
+	static String title;
 	static String author;
-	 static Boolean checkedOut;
-	 static int dueDate;
-	
-	
+	static Boolean checkedOut;
+	static int dueDate;
+
 	public Book() {
-		
+
 	}
-	
+
 	public Book(String title, String author, Boolean checkedOut, int dueDate) {
 		this.title = title;
 		this.author = author;
@@ -55,10 +54,8 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Title" + this.title + " Author " + this.author + " Checked out " + this.checkedOut + "Due Date" + this.dueDate;
+		return "Title" + this.title + " Author " + this.author + " Checked out " + this.checkedOut + "Due Date"
+				+ this.dueDate;
 	}
 
-	
-
-	
 }

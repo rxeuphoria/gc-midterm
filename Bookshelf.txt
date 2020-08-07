@@ -1,7 +1,11 @@
 Myth of Sysupus~~~Albert Camus~~~false~~~022020
 Power if Now~~~Eckhart Tolle~~~false~~~022020
 Twilight~~~Stephanie Meyer~~~false~~~022020
+<<<<<<< HEAD
+Total Money Makeover~~~Dave Ramsey~~~ false~~~022020
+=======
 Total Money Makeover~~~Dave Ramsey~~~false~~~022020
+>>>>>>> 4718faba00f057a05e13602220e305ba148b4c17
 Intelligent Investor~~~Benjamin Graham~~~false~~~022020
 Who Moved my Cheese~~~Spencer Johnson~~~false~~~022020
 The Silent Patient~~~Alex Michaelides~~~false~~~022020

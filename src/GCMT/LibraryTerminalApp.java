@@ -44,16 +44,7 @@ public class LibraryTerminalApp {
 
 			if (choice == 1) {
 				System.out.println(readFile());
-<<<<<<< HEAD
-			} else if (choice == 2) {
 
-				System.out.println("BookList");// Check out book
-			} else if (choice == 3) {
-				System.out.println("Check");
-
-			} else if (choice == 4) {
-				System.out.println("words");
-=======
 			} else if (choice == 2) { // ask what book they want, remove from availible list(temp),apply duedate
 
 				System.out.println("checked out");
@@ -63,7 +54,7 @@ public class LibraryTerminalApp {
 
 			} else if (choice == 4) {
 				System.out.println("words"); // ask user to choose if the want to search by author or keyword,search
->>>>>>> 8e900b23754b27998e7d7a4973435b346d768254
+
 			} else if (choice == 5) {
 				System.out.println("Goodbye!");
 			} else {

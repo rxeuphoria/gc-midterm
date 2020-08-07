@@ -29,11 +29,12 @@ public class LibraryTerminalApp {
 	static Scanner input = new Scanner(System.in);
 
 	public static void main(String[] args) {
-
+		
+		Calendar calendar = Calendar.getInstance();
 		int choice = 0;
-		System.out.println("********************Welcome to the Public Library!********************");
+		System.out.println("******************* Welcome to the Public Library! *******************");
 		System.out.println("              Please Select From The Following Options:               ");
-		System.out.println("**********************************************************************");
+		System.out.println("******************** "+ calendar.getTime() +  " ********************");
 		while (!(choice == 5)) {
 			System.out.println("1: Display all books");
 			System.out.println("2: Check out book");
@@ -53,11 +54,7 @@ public class LibraryTerminalApp {
 												// late fees,add back to avabile list
 			} else if (choice == 4) {
 				System.out.println("words"); // ask user to choose if the want to search by author or keyword,search
-<<<<<<< HEAD
 				searchByAuthorName();
-=======
-
->>>>>>> 1b085c1e63bb73a27b1cd72f8321a279284cc27f
 			} else if (choice == 5) {
 				System.out.println("Goodbye!");
 			} else {

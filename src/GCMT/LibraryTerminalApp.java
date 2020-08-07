@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -49,10 +50,13 @@ public class LibraryTerminalApp {
 
 				        System.out.println(readFile());        
 				        System.out.println(" What book would you like?\n");
-				        rentBook(input.next());
+				        boolean checkedIn= rentBook(input.next());
+				        if (checkedIn) {
+				        	System.out.println("It is available for rent.\n");
+				        }
 
 
-				System.out.println("checked out");
+				
 			} else if (choice == 3) {
 				System.out.println("Check"); // ask what book they're checking in, check if its out,check duedate for
 												// late fees,add back to avabile list
@@ -100,19 +104,13 @@ public class LibraryTerminalApp {
 	
 	
 	public static boolean rentBook (String userChoice) {
-		boolean available= true;
-		try{
-			List <String> lines= Files.readAllLines(filePath);
-		    List <Book> list= new ArrayList<>(); 
-
-		    for( int i =0; i < list.size(); i++) {
-		       if(!userChoice.equals(list.get(i).getCheckedOut())) {
-		    	  System.out.println("That book is available for rent.");
-		    }
-		  }
-		} catch (IOException e) {
-			System.out.println("Unable to read file."); 
-		}return available;
+		String available= null;
+		for( int i =0; i < readFile().size(); i++) {
+			     
+		   if(userChoice.equals(readFile().get(i).getCheckedOut())== false) {
+			  System.out.println("That book is available for rent.");
+		 }
+       } return true;
 	}
 	
 	

@@ -26,7 +26,7 @@ public class LibraryTerminalApp {
 	// after a book is checked out successfully, present updated list with updated
 	// checkout status
 	// sysout "here's your book, it's due back XX/XX/XXXX"
-	static Scanner input = new Scanner(System.in);
+	public static Scanner input = new Scanner(System.in);
 
 	public static void main(String[] args) {
 
@@ -46,7 +46,9 @@ public class LibraryTerminalApp {
 				System.out.println(readFile());
 
 			} else if (choice == 2) { // ask what book they want, remove from availible list(temp),apply duedate
-
+				        System.out.println(readFile());        
+				        System.out.println(" What book would you like?\n");
+				        rentBook(input.next());
 				System.out.println("checked out");
 			} else if (choice == 3) {
 				System.out.println("Check"); // ask what book they're checking in, check if its out,check duedate for
@@ -63,6 +65,25 @@ public class LibraryTerminalApp {
 		}
 	}
 
+	
+	
+	public static boolean rentBook (String userChoice) {
+		boolean available= true;
+		try{
+			List <String> lines= Files.readAllLines(filePath);
+		    List <Book> list= new ArrayList<>(); 
+
+		    for( int i =0; i < list.size(); i++) {
+		       if(userChoice.equals(list.get(i).getCheckedOut())) {
+		    	  System.out.println("That book is available for rent.");
+		    }
+		  }
+		} catch (IOException e) {
+			System.out.println("Unable to read file."); 
+		}return available;
+	}
+	
+	
 	// Read all the objects from a file and store them in a List.
 	public static List<Book> readFile() {
 		try {

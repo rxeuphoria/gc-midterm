@@ -61,7 +61,11 @@ public class LibraryTerminalApp {
 			} else if (choice == 3) {
 				        System.out.println("What would you like to return?"); // ask what book they're checking in, check if its out,check duedate for
 						boolean bookReturned= returnBook(input.next());	// late fees,add back to avabile list
-						            
+						          if(bookReturned) {
+						        	  System.out.println("Thank you for your return.");
+						          }else if(!bookReturned) {
+						        	  System.out.println(" The book is not due back.");
+						          }
 			} else if (choice == 4) {
 				System.out.println("words"); // ask user to choose if the want to search by author or keyword,search
 				searchByAuthorName();
@@ -105,21 +109,16 @@ public class LibraryTerminalApp {
 	public static boolean rentBook (String userChoice) {
 		
 		   for( int i =0; i < readFile().size(); i++) {
-			     
-		   if(userChoice.equals(readFile().get(i).getCheckedOut())== false) {
-			  System.out.println("That book is available for rent.");
-		 }
+			if(userChoice.equals(readFile().get(i).getCheckedOut())== false);
+			
        } return true;
 	}
 	
 	public static boolean returnBook(String userChoice) {
 		
 		      for( int i =0; i < readFile().size(); i++) {
-		     
-			   if(userChoice.equals(readFile().get(i).getCheckedOut())== true) {
-				  System.out.println("Thank you for your return.");
-			   }  
-	} return true;
+		     if(userChoice.equals(readFile().get(i).getCheckedOut())== false) ;
+		 }return false;
 	}
 	
 	// Read all the objects from a file and store them in a List.

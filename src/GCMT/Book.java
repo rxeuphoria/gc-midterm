@@ -4,10 +4,11 @@ import java.util.Calendar;
 
 public class Book {
 	
-	private static String title;
-	private static String author;
-	private static Boolean checkedOut;
-	private static int dueDate;
+	 static String title;
+	static String author;
+	 static Boolean checkedOut;
+	 static int dueDate;
+	
 	
 	public Book() {
 		

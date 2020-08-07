@@ -109,7 +109,7 @@ public class LibraryTerminalApp {
 				String title = parts[0];
 				if (author.equalsIgnoreCase(author1)) {
 
-					System.out.println("\s" + parts[0] + "\t\t" + parts[1]);
+					System.out.println(" " + parts[0] + "\t\t" + parts[1]);
 					flag++;
 
 				}
@@ -141,7 +141,7 @@ public class LibraryTerminalApp {
 				String title = parts[0];
 				if (title.equalsIgnoreCase(keyword)) {
 
-					System.out.println("\s" + parts[0] + "\t\t" + parts[1]);
+					System.out.println(" " + parts[0] + "\t\t" + parts[1]);
 					flag++;
 
 				}

@@ -53,7 +53,6 @@ public class LibraryTerminalApp {
 			} else if (choice == 2) { // ask what book they want, remove from availible list(temp),apply duedate
                        System.out.println(" What book would you like?\n");
 				       rentBook(input.next());
-				       break;
 
 			} else if (choice == 3) {
 

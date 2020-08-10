@@ -35,6 +35,8 @@ public class LibraryTerminalApp {
 	public static void main(String[] args) {
 
 		Calendar calendar = Calendar.getInstance();
+		List<Book> bookShelf= new ArrayList<Book>();
+		bookShelf=readFile();
 		int choice = 0;
 		System.out.println("******************* Welcome to the Public Library! *******************");
 		System.out.println("              Please Select From The Following Options:               ");
@@ -46,7 +48,7 @@ public class LibraryTerminalApp {
 			System.out.println("4: Search book");
 			System.out.println("5: Exit");
 			choice = input.nextInt();
-
+ 
 			if (choice == 1) {
 				System.out.println(readFile());
 

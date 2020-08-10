@@ -56,16 +56,9 @@ public class LibraryTerminalApp {
 				       break;
 
 			} else if (choice == 3) {
-
-				        System.out.println("What would you like to return?"); // ask what book they're checking in, check if its out,check duedate for
-						        returnBook(input.next());	// late fees,add back to avabile list
-						         // if(bookReturned) {
-						        //	  System.out.println("Thank you for your return.");
-						         // }else if(!bookReturned) {
-						        //	  System.out.println(" The book is not due back.");
-						          
-
-
+                        System.out.println("What would you like to return?\n"); // ask what book they're checking in, check if its out,check duedate for
+						returnBook(input.next());	// late fees,add back to available list
+						 break;
 			} else if (choice == 4) {
 				System.out.println("words"); // ask user to choose if the want to search by author or keyword,search
 				searchByAuthorName();
@@ -133,26 +126,28 @@ public class LibraryTerminalApp {
 	  }
 		 
 	
-	public static String returnBook(String userChoice) {
-               List list= readFile();
-		       List<Book> bookShelf = new ArrayList<Book>();
+	public static void returnBook(String userChoice) {
+		userChoice= input.next();
+		try{
+			List<String> lines = Files.readAllLines(filePath);
+			List<Book> bookShelf = new ArrayList<>();
+		for (String line:lines) {
+			
+			if(line.contains(userChoice)) {
 		       
-		      
-		      for( int i =0; i < list.size(); i++) {
-		    	  bookShelf.add((Book) list.get(i));
-		       if(userChoice.equals(list.get(i))){
-		    	 list.get(i);
-		    	 System.out.println(" you can rent");
-		    	 System.out.println(bookShelf);
-		    	 ;
-		     }
-		    	 
-		     
-		 }return userChoice;
-
-
-	}
-
+			 if(line.contains("false")) {
+				 System.out.println("It is not due back.");
+				
+			 }else if(line.contains("true")){ 
+				 System.out.println("Thank you for your return.");
+			 }
+			 }
+		}
+		}catch(IOException e) {
+			System.out.println("Unable to read file.");
+		}
+	  }
+	
 	// Read all the objects from a file and store them in a List.
 	public static List<Book> readFile() {
 		try {
@@ -170,7 +165,7 @@ public class LibraryTerminalApp {
 				boolean checkedOut = parts[2] != null;
 				int dueDate = Integer.parseInt(parts[3]);
 
-				// bookShelf.add(Book(title, author, checkedOut, dueDate));// add to list new
+			// bookShelf.add(Book(title, author, checkedOut, dueDate));// add to list new
 				// list
 			}
 			return bookShelf;

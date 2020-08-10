@@ -23,6 +23,7 @@ public class LibraryTerminalApp {
 		Calendar calendar = Calendar.getInstance();
 		List<Book> bookShelf = new ArrayList<Book>();
 		bookShelf = readFile();
+		
 		int choice = 0;
 		System.out.println("******************* Welcome to the Public Library! *******************");
 		System.out.println("              Please Select From The Following Options:               ");
@@ -122,7 +123,6 @@ public class LibraryTerminalApp {
 
 					if (line.contains("false")) {
 						System.out.println("It is not due back.");
-
 					} else if (line.contains("true")) {
 						System.out.println("Thank you for your return.");
 					}
@@ -147,8 +147,8 @@ public class LibraryTerminalApp {
 
 				String title = parts[0];
 				String author = parts[1];
-				boolean checkedOut = parts[2] != null;
-				int dueDate = Integer.parseInt(parts[3]);
+				String checkedOut = parts[2];
+				String dueDate = parts[3];
 
 				// bookShelf.add(Book(title, author, checkedOut, dueDate));// add to list new
 				// list

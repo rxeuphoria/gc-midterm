@@ -1,9 +1,11 @@
 package GCMT;
 
+import java.awt.print.Book;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -49,29 +51,21 @@ public class LibraryTerminalApp {
 				System.out.println(readFile());
 
 			} else if (choice == 2) { // ask what book they want, remove from availible list(temp),apply duedate
-
-				System.out.println(readFile());
-				System.out.println(" What book would you like?\n");
-				boolean checkedIn = rentBook(input.next());
-				if (checkedIn) {
-					System.out.println("It is available for rent.\n");
-				}
+                       System.out.println(" What book would you like?\n");
+				       rentBook(input.next());
+				       break;
 
 			} else if (choice == 3) {
-<<<<<<< HEAD
-				        System.out.println("What would you like to return?"); // ask what book they're checking in, check if its out,check duedate for
-						boolean bookReturned= returnBook(input.next());	// late fees,add back to avabile list
-						          if(bookReturned) {
-						        	  System.out.println("Thank you for your return.");
-						          }else if(!bookReturned) {
-						        	  System.out.println(" The book is not due back.");
-						          }
-=======
-				System.out.println("What would you like to return?"); // ask what book they're checking in, check if its
-																		// out,check duedate for
-				boolean bookReturned = returnBook(input.next()); // late fees,add back to avabile list
 
->>>>>>> 2b56e429872f120986dbedad74c08c5c01ce44cb
+				        System.out.println("What would you like to return?"); // ask what book they're checking in, check if its out,check duedate for
+						        returnBook(input.next());	// late fees,add back to avabile list
+						         // if(bookReturned) {
+						        //	  System.out.println("Thank you for your return.");
+						         // }else if(!bookReturned) {
+						        //	  System.out.println(" The book is not due back.");
+						          
+
+
 			} else if (choice == 4) {
 				System.out.println("words"); // ask user to choose if the want to search by author or keyword,search
 				searchByAuthorName();
@@ -82,7 +76,8 @@ public class LibraryTerminalApp {
 				System.out.println("Please enter valid selection.");
 			}
 		}
-	}
+	  }
+	
 
 	public static void searchByAuthorName() {
 		List<Book> authorSearch = new ArrayList<>(); // Array that stores 'book' Objects.
@@ -109,46 +104,63 @@ public class LibraryTerminalApp {
 
 	}
 
-<<<<<<< HEAD
-	
-	
-	public static boolean rentBook (String userChoice) {
+
+
+	public static void rentBook(String name) {
 		
-		   for( int i =0; i < readFile().size(); i++) {
-			if(userChoice.equals(readFile().get(i).getCheckedOut())== false);
+		Calendar calendar = Calendar.getInstance();
+		name= input.next();
+		try{
+			List<String> lines = Files.readAllLines(filePath);
+			List<Book> bookShelf = new ArrayList<>();
+		for (String line:lines) {
 			
-       } return true;
-=======
-	public static boolean rentBook(String userChoice) {
-
-		for (int i = 0; i < readFile().size(); i++) {
-
-			if (userChoice.equals(readFile().get(i).getCheckedOut()) == false) {
-				System.out.println("That book is available for rent.");
-				cart++;
-			}
+			if(line.contains(name)) {
+		       
+			 if(line.contains("false")) {
+				 System.out.println("It is available for rent");
+				 calendar.add(calendar.DATE, 21);
+				 System.out.println(" Due back by :" + calendar.getTime());
+			 }else if(line.contains("true")){ 
+				 System.out.println("Not available for rent");
+			 }
+			 }
 		}
-		return true;
->>>>>>> 2b56e429872f120986dbedad74c08c5c01ce44cb
+		}catch(IOException e) {
+			System.out.println("Unable to read file.");
+		}
+	  }
+		 
+	
+	public static void dueDate() {
+		
+    Calendar cal = Calendar.getInstance();
+   cal.add(Calendar.DATE, 21);
+
+            java.util.Date expirationDate = cal.getTime();
+              System.err.println(expirationDate);
+
 	}
 
-	public static boolean returnBook(String userChoice) {
-<<<<<<< HEAD
-		
-		      for( int i =0; i < readFile().size(); i++) {
-		     if(userChoice.equals(readFile().get(i).getCheckedOut())== false) ;
-		 }return false;
-=======
 
-		for (int i = 0; i < readFile().size(); i++) {
+	public static String returnBook(String userChoice) {
+               List list= readFile();
+		       List<Book> bookShelf = new ArrayList<Book>();
+		       
+		      
+		      for( int i =0; i < list.size(); i++) {
+		    	  bookShelf.add((Book) list.get(i));
+		       if(userChoice.equals(list.get(i))){
+		    	 list.get(i);
+		    	 System.out.println(" you can rent");
+		    	 System.out.println(bookShelf);
+		    	 ;
+		     }
+		    	 
+		     
+		 }return userChoice;
 
-			if (userChoice.equals(readFile().get(i).getCheckedOut()) == true) {
-				System.out.println("Thank you for your return.");
-				cart--;
-			}
-		}
-		return true;
->>>>>>> 2b56e429872f120986dbedad74c08c5c01ce44cb
+
 	}
 
 	// Read all the objects from a file and store them in a List.

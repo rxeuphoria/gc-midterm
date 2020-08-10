@@ -17,19 +17,7 @@ import java.util.Scanner;
 public class LibraryTerminalApp {
 	private static Path filePath = Paths.get("Bookshelf.txt");
 
-	// ~~~ spacers
-	// sysout "are you here to return a book or check out?"
-	// display books in a list up front
-	// books indexed by number
-	// keyword search? then index?
-	// option A have, option B dont have
-	// A - book checks out, book has due date applied
-	// checkout status update, dueDate update
-	// extra--recommend other within genre
-	// B - book not available, display book dueDate for return
-	// after a book is checked out successfully, present updated list with updated
-	// checkout status
-	// sysout "here's your book, it's due back XX/XX/XXXX"
+	private static List<Book> bookInventory = readFile();
 	public static Scanner input = new Scanner(System.in);
 	private static int cart = 0;
 
@@ -50,7 +38,9 @@ public class LibraryTerminalApp {
 			choice = input.nextInt();
 
 			if (choice == 1) {
-				System.out.println(readFile());
+				for (Book book : bookInventory) {
+					System.out.println(book);
+				}
 
 			} else if (choice == 2) { // ask what book they want, remove from availible list(temp),apply duedate
 				System.out.println(" What book would you like?\n");

@@ -55,7 +55,7 @@ public class LibraryTerminalApp {
 			} else if (choice == 2) {  // ask what book they want, remove from availible list(temp),apply duedate
                 System.out.println(" What book would you like?\n");
 			       rentBook(input.next());
-			       break;
+			       //break;
 
 			} else if (choice == 3) {
 				System.out.println("What would you like to return?\n"); // ask what book they're checking in, check if its out,check duedate for
@@ -162,7 +162,8 @@ public class LibraryTerminalApp {
 				 System.out.println("It is available for rent");
 				 calendar.add(calendar.DATE, 21);
 				 System.out.println(" Due back by :" + calendar.getTime());
-				break;
+				 replaceLinesOut();
+				//break;
 			 }else if(line.contains("true")){ 
 				 System.out.println("Not available for rent");
 			 }
@@ -232,21 +233,20 @@ public class LibraryTerminalApp {
 			
 		}
 	}
-	public static void replaceLines() {
+	public static void replaceLinesOut() {
 	    try {
-	        // input the (modified) file content to the StringBuffer "input"
 	        BufferedReader file = new BufferedReader(new FileReader("Bookshelf.txt"));
 	        StringBuffer inputBuffer = new StringBuffer();
 	        String line;
 
 	        while ((line = file.readLine()) != null) {
-	            line =... // replace the line here
+	            line.replace("false", "true");
 	            inputBuffer.append(line);
 	            inputBuffer.append('\n');
 	        }
 	        file.close();
 
-	        // write the new string with the replaced line OVER the same file
+	        
 	        FileOutputStream fileOut = new FileOutputStream("Bookshelf.txt");
 	        fileOut.write(inputBuffer.toString().getBytes());
 	        fileOut.close();

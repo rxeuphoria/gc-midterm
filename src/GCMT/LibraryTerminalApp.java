@@ -49,29 +49,15 @@ public class LibraryTerminalApp {
 			if (choice == 1) {
 				System.out.println(readFile());
 
-			} else if (choice == 2) { // ask what book they want, remove from availible list(temp),apply duedate
-
-				System.out.println(readFile());
-				System.out.println(" What book would you like?\n");
-				boolean checkedIn = rentBook(input.next());
-				if (checkedIn) {
-					System.out.println("It is available for rent.\n");
-				}
+			} else if (choice == 2) {  // ask what book they want, remove from availible list(temp),apply duedate
+                System.out.println(" What book would you like?\n");
+			       rentBook(input.next());
+			       break;
 
 			} else if (choice == 3) {
-
-				System.out.println("What would you like to return?"); // ask what book they're checking in, check if its
-																		// out,check duedate for
-				boolean bookReturned = returnBook(input.next()); // late fees,add back to avabile list
-				if (bookReturned) {
-					System.out.println("Thank you for your return.");
-				} else if (!bookReturned) {
-					System.out.println(" The book is not due back.");
-				}
-
-				System.out.println("What would you like to return?"); // ask what book they're checking in, check if its
-																		// out,check duedate for
-
+				System.out.println("What would you like to return?\n"); // ask what book they're checking in, check if its out,check duedate for
+				returnBook(input.next());	// late fees,add back to available list
+				 break;
 			} else if (choice == 4) {
 				
 				System.out.println("welcome to the search engine would you like to search by keyword or author?");
@@ -109,7 +95,7 @@ public class LibraryTerminalApp {
 				String title = parts[0];
 				if (author.equalsIgnoreCase(author1)) {
 
-					System.out.println("\s" + parts[0] + "\t\t" + parts[1]);
+					System.out.println(" " + parts[0] + "\t\t" + parts[1]);
 					flag++;
 
 				}
@@ -141,7 +127,7 @@ public class LibraryTerminalApp {
 				String title = parts[0];
 				if (title.equalsIgnoreCase(keyword)) {
 
-					System.out.println("\s" + parts[0] + "\t\t" + parts[1]);
+					System.out.println(" " + parts[0] + "\t\t" + parts[1]);
 					flag++;
 
 				}
@@ -157,39 +143,60 @@ public class LibraryTerminalApp {
 
 	}
 
-	public static boolean rentBook(String userChoice) {
+	public static void rentBook(String name) {
 
-		for (int i = 0; i < readFile().size(); i++) {
-
-			readFile().get(i);
-			if (userChoice.equals(Book.getCheckedOut()) == false) {
-				System.out.println("That book is available for rent.");
-				cart++;
-			}
+		Calendar calendar = Calendar.getInstance();
+		name= input.next();
+		try{
+			List<String> lines = Files.readAllLines(filePath);
+			List<Book> bookShelf = new ArrayList<>();
+		for (String line:lines) {
+			
+			if(line.contains(name)) {
+		       
+			 if(line.contains("false")) {
+				 System.out.println("It is available for rent");
+				 calendar.add(calendar.DATE, 21);
+				 System.out.println(" Due back by :" + calendar.getTime());
+				
+			 }else if(line.contains("true")){ 
+				 System.out.println("Not available for rent");
+			 }
+			 }
 		}
-		return true;
-
-	}
-
-	public static boolean returnBook(String userChoice) {
-
-		for (int i = 0; i < readFile().size(); i++) {
-			readFile().get(i);
-			if (userChoice.equals(Book.getCheckedOut()) == false)
-				;
+		}catch(IOException e) {
+			System.out.println("Unable to read file.");
 		}
-		return false;
+	  }
 
-//		for (int i = 0; i < readFile().size(); i++) {
-//
-//			if (userChoice.equals(readFile().get(i).getCheckedOut()) == true) {
-//				System.out.println("Thank you for your return.");
-//				cart--;
-//			}
-//		}
-//		return true;
+	
 
-	}
+	public static void returnBook(String userChoice) {
+
+		userChoice= input.next();
+		try{
+			List<String> lines = Files.readAllLines(filePath);
+			List<Book> bookShelf = new ArrayList<>();
+		for (String line:lines) {
+			
+			if(line.contains(userChoice)) {
+		       
+			 if(line.contains("false")) {
+				 System.out.println("It is not due back.");
+				
+			 }else if(line.contains("true")){ 
+				 System.out.println("Thank you for your return.");
+			 }
+			 }
+		}
+		}catch(IOException e) {
+			System.out.println("Unable to read file.");
+		}
+	  }
+
+
+
+	
 
 	// Read all the objects from a file and store them in a List.
 	public static List<Book> readFile() {

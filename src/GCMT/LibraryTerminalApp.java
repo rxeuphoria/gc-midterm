@@ -52,27 +52,28 @@ public class LibraryTerminalApp {
 			if (choice == 1) {
 				System.out.println(readFile());
 
-			} else if (choice == 2) {  // ask what book they want, remove from availible list(temp),apply duedate
-                System.out.println(" What book would you like?\n");
-			       rentBook(input.next());
-			       //break;
+			} else if (choice == 2) { // ask what book they want, remove from availible list(temp),apply duedate
+				System.out.println(" What book would you like?\n");
+				rentBook(input.next());
+				// break;
 
 			} else if (choice == 3) {
-				System.out.println("What would you like to return?\n"); // ask what book they're checking in, check if its out,check duedate for
-				returnBook(input.next());	// late fees,add back to available list
-				 break;
+				System.out.println("What would you like to return?\n"); // ask what book they're checking in, check if
+																		// its out,check duedate for
+				returnBook(input.next()); // late fees,add back to available list
+				break;
 			} else if (choice == 4) {
-				
+
 				System.out.println("welcome to the search engine would you like to search by keyword or author?");
 				System.out.println("Please select 1 for author or 2 for keyword");
 				choice = input.nextInt();
-				if(choice==1)
-				searchByAuthorName();
-				if (choice==2)
+				if (choice == 1)
+					searchByAuthorName();
+				if (choice == 2)
 					searchByKeyWord();
 				else {
 					System.out.println("Please make a valid selection");
-				}	
+				}
 
 			} else if (choice == 5) {
 				System.out.println("Goodbye!");
@@ -149,59 +150,53 @@ public class LibraryTerminalApp {
 	public static void rentBook(String name) {
 
 		Calendar calendar = Calendar.getInstance();
-		name= input.next();
-		try{
+		name = input.next();
+		try {
 			List<String> lines = Files.readAllLines(filePath);
 			List<Book> bookShelf = new ArrayList<>();
-		for (String line:lines) {
-			
-			if(line.contains(name)) {
-		       
-			 if(line.contains("false")) {
-				 
-				 System.out.println("It is available for rent");
-				 calendar.add(calendar.DATE, 21);
-				 System.out.println(" Due back by :" + calendar.getTime());
-				 replaceLinesOut();
-				//break;
-			 }else if(line.contains("true")){ 
-				 System.out.println("Not available for rent");
-			 }
-			 }
-		}
-		}catch(IOException e) {
+			for (String line : lines) {
+
+				if (line.contains(name)) {
+
+					if (line.contains("false")) {
+
+						System.out.println("It is available for rent");
+						calendar.add(calendar.DATE, 21);
+						System.out.println(" Due back by :" + calendar.getTime());
+						replaceLinesOut();
+						// break;
+					} else if (line.contains("true")) {
+						System.out.println("Not available for rent");
+					}
+				}
+			}
+		} catch (IOException e) {
 			System.out.println("Unable to read file.");
 		}
-	  }
-
-	
+	}
 
 	public static void returnBook(String userChoice) {
 
-		userChoice= input.next();
-		try{
+		userChoice = input.next();
+		try {
 			List<String> lines = Files.readAllLines(filePath);
 			List<Book> bookShelf = new ArrayList<>();
-		for (String line:lines) {
-			
-			if(line.contains(userChoice)) {
-		       
-			 if(line.contains("false")) {
-				 System.out.println("It is not due back.");
-				
-			 }else if(line.contains("true")){ 
-				 System.out.println("Thank you for your return.");
-			 }
-			 }
-		}
-		}catch(IOException e) {
+			for (String line : lines) {
+
+				if (line.contains(userChoice)) {
+
+					if (line.contains("false")) {
+						System.out.println("It is not due back.");
+
+					} else if (line.contains("true")) {
+						System.out.println("Thank you for your return.");
+					}
+				}
+			}
+		} catch (IOException e) {
 			System.out.println("Unable to read file.");
 		}
-	  }
-
-
-
-	
+	}
 
 	// Read all the objects from a file and store them in a List.
 	public static List<Book> readFile() {
@@ -213,15 +208,14 @@ public class LibraryTerminalApp {
 				// System.out.println(word);
 
 				String[] parts = word.split("~~~");
-				System.out.println(Arrays.deepToString(parts));// separate each part based on index
+				//System.out.println(Arrays.deepToString(parts));
 
 				String title = parts[0];
 				String author = parts[1];
 				String checkedOut = parts[2];
 				int dueDate = Integer.parseInt(parts[3]);
 
-				// bookShelf.add(Book(title, author, checkedOut, dueDate));// add to list new
-				// list
+				bookShelf.add(new Book(title, author, checkedOut, dueDate));
 			}
 			return bookShelf;
 
@@ -230,36 +224,29 @@ public class LibraryTerminalApp {
 
 			return new ArrayList<>();
 //			System.out.println(" " + parts[0] + "\t\t" + parts[1]);    formate list view
-			
+
 		}
 	}
+
 	public static void replaceLinesOut() {
-	    try {
-	        BufferedReader file = new BufferedReader(new FileReader("Bookshelf.txt"));
-	        StringBuffer inputBuffer = new StringBuffer();
-	        String line;
+		try {
+			BufferedReader file = new BufferedReader(new FileReader("Bookshelf.txt"));
+			StringBuffer inputBuffer = new StringBuffer();
+			String line;
 
-	        while ((line = file.readLine()) != null) {
-	            line.replace("false", "true");
-	            inputBuffer.append(line);
-	            inputBuffer.append('\n');
-	        }
-	        file.close();
+			while ((line = file.readLine()) != null) {
+				line.replace("false", "true");
+				inputBuffer.append(line);
+				inputBuffer.append('\n');
+			}
+			file.close();
 
-	        
-	        FileOutputStream fileOut = new FileOutputStream("Bookshelf.txt");
-	        fileOut.write(inputBuffer.toString().getBytes());
-	        fileOut.close();
+			FileOutputStream fileOut = new FileOutputStream("Bookshelf.txt");
+			fileOut.write(inputBuffer.toString().getBytes());
+			fileOut.close();
 
-	    } catch (Exception e) {
-	        System.out.println("Problem reading file.");
-	    }
+		} catch (Exception e) {
+			System.out.println("Problem reading file.");
+		}
 	}
-	/*
-	 * public void showAllBooks() { int count;
-	 * System.out.println("Heres what we have in stock");//use tabs to format later
-	 * System.out.println("Title\t\tAuthor"); for(int i=0;i<count;i++) {
-	 * System.out.println(Book[i].name + Book[i].author);
-	 */
-
 }

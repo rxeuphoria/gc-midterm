@@ -1,13 +1,11 @@
 package GCMT;
 
-import java.util.Calendar;
-
 public class Book {
 
-	static String title;
-	static String author;
-	static String checkedOut;
-	static int dueDate;
+	private String title;
+	private String author;
+	private String checkedOut;
+	private int dueDate;
 
 	public Book() {
 
@@ -20,41 +18,41 @@ public class Book {
 		this.dueDate = dueDate;
 	}
 
-	public static String getTitle() {
+	public String getTitle() {
 		return title;
 	}
 
-	public static void setTitle(String title) {
-		Book.title = title;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public static String getAuthor() {
+	public String getAuthor() {
 		return author;
 	}
 
-	public static void setAuthor(String author) {
-		Book.author = author;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 
-	public static String getCheckedOut() {
+	public String getCheckedOut() {
 		return checkedOut;
 	}
 
-	public static void setCheckedOut(String checkedOut) {
-		Book.checkedOut = checkedOut;
+	public void setCheckedOut(String checkedOut) {
+		this.checkedOut = checkedOut;
 	}
 
-	public static int getDueDate() {
+	public int getDueDate() {
 		return dueDate;
 	}
 
-	public static void setDueDate(int dueDate) {
-		Book.dueDate = dueDate;
+	public void setDueDate(int dueDate) {
+		this.dueDate = dueDate;
 	}
 
 	@Override
 	public String toString() {
-		return "Title" + this.title + " Author " + this.author + " Checked out " + this.checkedOut + "Due Date"
+		return "Title: " + this.title + " Author: " + this.author + " Checked out:  " + this.checkedOut + "Due Date: "
 				+ this.dueDate;
 	}
 

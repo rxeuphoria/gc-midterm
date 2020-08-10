@@ -7,12 +7,16 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+
+
 
 public class LibraryTerminalApp {
 	private static Path filePath = Paths.get("Bookshelf.txt");
@@ -35,8 +39,11 @@ public class LibraryTerminalApp {
 			System.out.println("4: Search book");
 
 			System.out.println("5: Exit");
-			choice = input.nextInt();
-
+			try{
+				choice = input.nextInt();
+			}catch( InputMismatchException e) {
+                 System.out.println(" ");
+			}
 			if (choice == 1) {
 				for (Book book : bookInventory) {
 					System.out.println(book);
@@ -44,9 +51,10 @@ public class LibraryTerminalApp {
 
 			} else if (choice == 2) { // ask what book they want, remove from availible list(temp),apply duedate
 				System.out.println(" What book would you like?\n");
-				rentBook(input.next());
-				// break;
-
+				String userChoice= input.next();
+				rentBook(userChoice);
+				bookInventory.remove(userChoice);
+				  
 			} else if (choice == 3) {
 				System.out.println("What would you like to return?\n"); // ask what book they're checking in, check if
 																		// its out,check duedate for
@@ -239,4 +247,26 @@ public class LibraryTerminalApp {
 			System.out.println("Problem reading file.");
 		}
 	}
+
+	public static void appendLineToFile(List<Book> thing) {
+		String line= " " ;
+		List<String> lines = Collections.singletonList(line);
+		try{
+			
+		   Files.write(filePath,lines,StandardOpenOption.DELETE_ON_CLOSE);
+		
+		 for(Book book: thing) {
+		  
+		
+		line= ((Book) thing).getTitle()+ "~~~" + ((Book) thing).getAuthor()+ "~~~" + ((Book) thing).getCheckedOut()+ ((Book) thing).getCheckedOut();
+		
+			Files.write(filePath, lines, StandardOpenOption.CREATE,
+		
+		 StandardOpenOption.APPEND);
+		 }
+		} catch (IOException e) {
+			System.out.println("Unable to write to file.");
+    }
+ 
+}
 }

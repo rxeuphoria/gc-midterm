@@ -52,7 +52,7 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Title: " + this.title + "\t\t\tAuthor: " + this.author + "\t\tChecked out:  " + this.checkedOut + "\t\tDue Date: "
+		return "Title: " + this.title + "\tAuthor: " + this.author + "\tChecked out:  " + this.checkedOut + "\tDue Date: "
 				+ this.dueDate;
 	}
 

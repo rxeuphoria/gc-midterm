@@ -35,7 +35,11 @@ public class LibraryTerminalApp {
 			System.out.println("4: Search book");
 
 			System.out.println("5: Exit");
-			choice = input.nextInt();
+			try {
+				choice = input.nextInt();
+			} catch (InputMismatchException e) {
+				System.out.println(" ");
+			}
 
 			if (choice == 1) {
 				for (Book book : bookInventory) {
@@ -44,8 +48,8 @@ public class LibraryTerminalApp {
 
 			} else if (choice == 2) { // ask what book they want, remove from availible list(temp),apply duedate
 				System.out.println(" What book would you like?\n");
+
 				rentBook(input.next());
-				// break;
 
 			} else if (choice == 3) {
 				System.out.println("What would you like to return?\n"); // ask what book they're checking in, check if
@@ -154,7 +158,7 @@ public class LibraryTerminalApp {
 						calendar.add(calendar.DATE, 21);
 						System.out.println(" Due back by :" + calendar.getTime());
 						replaceLinesOut();
-						// break;
+						break;
 					} else if (line.contains("true")) {
 						System.out.println("Not available for rent");
 					}
@@ -198,7 +202,7 @@ public class LibraryTerminalApp {
 				// System.out.println(word);
 
 				String[] parts = word.split("~~~");
-				//System.out.println(Arrays.deepToString(parts));
+				// System.out.println(Arrays.deepToString(parts));
 
 				String title = parts[0];
 				String author = parts[1];

@@ -121,6 +121,7 @@ public class LibraryTerminalApp {
 				 System.out.println("It is available for rent");
 				 calendar.add(calendar.DATE, 21);
 				 System.out.println(" Due back by :" + calendar.getTime());
+				
 			 }else if(line.contains("true")){ 
 				 System.out.println("Not available for rent");
 			 }
@@ -132,17 +133,6 @@ public class LibraryTerminalApp {
 	  }
 		 
 	
-	public static void dueDate() {
-		
-    Calendar cal = Calendar.getInstance();
-   cal.add(Calendar.DATE, 21);
-
-            java.util.Date expirationDate = cal.getTime();
-              System.err.println(expirationDate);
-
-	}
-
-
 	public static String returnBook(String userChoice) {
                List list= readFile();
 		       List<Book> bookShelf = new ArrayList<Book>();

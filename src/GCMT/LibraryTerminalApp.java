@@ -1,5 +1,8 @@
 package GCMT;
 
+import java.io.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -125,7 +128,7 @@ public class LibraryTerminalApp {
 				String[] parts = word.split("~~~");
 				String author1 = parts[1];
 				String title = parts[0];
-				if (title.equalsIgnoreCase(keyword)) {
+				if (title.contains(keyword)) {
 
 					System.out.println(" " + parts[0] + "\t\t" + parts[1]);
 					flag++;
@@ -155,10 +158,11 @@ public class LibraryTerminalApp {
 			if(line.contains(name)) {
 		       
 			 if(line.contains("false")) {
+				 
 				 System.out.println("It is available for rent");
 				 calendar.add(calendar.DATE, 21);
 				 System.out.println(" Due back by :" + calendar.getTime());
-				
+				break;
 			 }else if(line.contains("true")){ 
 				 System.out.println("Not available for rent");
 			 }
@@ -212,7 +216,7 @@ public class LibraryTerminalApp {
 
 				String title = parts[0];
 				String author = parts[1];
-				boolean checkedOut = parts[2] != null;
+				String checkedOut = parts[2];
 				int dueDate = Integer.parseInt(parts[3]);
 
 				// bookShelf.add(Book(title, author, checkedOut, dueDate));// add to list new
@@ -224,9 +228,33 @@ public class LibraryTerminalApp {
 			System.out.println("Unable to read file.");
 
 			return new ArrayList<>();
+//			System.out.println(" " + parts[0] + "\t\t" + parts[1]);    formate list view
+			
 		}
 	}
+	public static void replaceLines() {
+	    try {
+	        // input the (modified) file content to the StringBuffer "input"
+	        BufferedReader file = new BufferedReader(new FileReader("Bookshelf.txt"));
+	        StringBuffer inputBuffer = new StringBuffer();
+	        String line;
 
+	        while ((line = file.readLine()) != null) {
+	            line =... // replace the line here
+	            inputBuffer.append(line);
+	            inputBuffer.append('\n');
+	        }
+	        file.close();
+
+	        // write the new string with the replaced line OVER the same file
+	        FileOutputStream fileOut = new FileOutputStream("Bookshelf.txt");
+	        fileOut.write(inputBuffer.toString().getBytes());
+	        fileOut.close();
+
+	    } catch (Exception e) {
+	        System.out.println("Problem reading file.");
+	    }
+	}
 	/*
 	 * public void showAllBooks() { int count;
 	 * System.out.println("Heres what we have in stock");//use tabs to format later

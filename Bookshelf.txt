@@ -7,6 +7,6 @@ Who Moved my Cheese~~~Spencer Johnson~~~false~~~022020
 The Silent Patient~~~Alex Michaelides~~~false~~~022020
 Little Fires Everywhere~~~Celeste Ng~~~true~~~022820
 The Book Thief~~~Markus Zusak~~~false~~~022020
-All the Light We Cannot See~~~Anthony Doerr~~~true~~~022020
+All the Light We Cannot See~~~Anthony Doerr~~~false~~~022020
 Charlotte's Web~~~E. B. White~~~false~~~022020
 The Great Alone~~~Kristin Hannah~~~false~~~022020

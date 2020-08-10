@@ -6,14 +6,14 @@ public class Book {
 
 	static String title;
 	static String author;
-	static Boolean checkedOut;
+	static String checkedOut;
 	static int dueDate;
 
 	public Book() {
 
 	}
 
-	public Book(String title, String author, Boolean checkedOut, int dueDate) {
+	public Book(String title, String author, String checkedOut, int dueDate) {
 		this.title = title;
 		this.author = author;
 		this.checkedOut = checkedOut;
@@ -36,11 +36,11 @@ public class Book {
 		Book.author = author;
 	}
 
-	public static Boolean getCheckedOut() {
+	public static String getCheckedOut() {
 		return checkedOut;
 	}
 
-	public static void setCheckedOut(Boolean checkedOut) {
+	public static void setCheckedOut(String checkedOut) {
 		Book.checkedOut = checkedOut;
 	}
 

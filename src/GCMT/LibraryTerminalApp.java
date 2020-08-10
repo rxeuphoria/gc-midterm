@@ -13,6 +13,7 @@ import java.util.Calendar;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import java.io.PrintStream;
 
 public class LibraryTerminalApp {
 	private static Path filePath = Paths.get("Bookshelf.txt");
